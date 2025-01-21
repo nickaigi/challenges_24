@@ -1,5 +1,7 @@
 """
 Bubble Sort
+============
+
 - Works by repeatedly comparing adjacent elements and swapping them if not in the correct order
 
 This implementation has a time complexity of O(n^2) in the worst and average cases, but it can be optimized to O(n) in the best case (when the array is already sorted).
@@ -22,6 +24,23 @@ Use the same array to perform swaps.
 Only require a few fixed-size variables (e.g., i, j, swapped), regardless of the value of n.
 
 Thus, the space complexity is O(1).
+
+
+Applications of Bubble Sort
+---------------------------
+When to use bubble sort?
+
+Use bubble sort for
+
+1. Small datasets.
+2. When simplicity is more important than efficiency.
+3. When the data is already partially sorted.
+
+When not to use bubble sort?
+
+Avoid bubble sort for large datasets and performance-critical applications.
+
+In such cases, sorting algorithms like merge sort or quick sort are more suitable.
 """
 
 def bubble_sort_descending(arr):
