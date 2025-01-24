@@ -22,17 +22,19 @@ Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
 
-
-Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 """
 
+
 def two_sum(nums: list[int], target: int) -> list[int]:
-    for i in range(len(nums)):
-        for j in range(i+1, len(nums)):
-            if nums[i] + nums[j] == target:
-                return [i, j]
+    seen = {}
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in seen:
+            return [seen[diff], i]
+        seen[n] = i
     return []
 
 
 if __name__ == "__main__":
-    print(f'two_sum([2, 7, 11, 15], 9) = {two_sum([2, 7, 11, 15], 9)}')
+    nums: list[int] = [2, 7, 11, 15]
+    print(f'two_sum([2, 7, 11, 15], 9) = {two_sum(nums, 9)}')
