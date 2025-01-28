@@ -27,7 +27,7 @@ Input: coins = [1], amount = 0
 Output: 0
 """
 
-def coin_change(coins: list[int], amount: int) -> int | float:
+def coin_change_top_down(coins: list[int], amount: int) -> int | float:
     # Top Down DP (Memoization)
     # Time: O(coins * amount)
     # Space: O(amount)
@@ -57,15 +57,42 @@ def coin_change(coins: list[int], amount: int) -> int | float:
         return -1
 
 
+def coin_change(coins: list[int], amount: int) -> int | float:
+    # Bottom UP DP (Tabulation)
+    # Time: O(coins * amount)
+    # Space: O(amount)
+
+    coins.sort()
+    dp = [0] * (amount + 1)
+
+    for i in range(1, amount + 1):
+        minn = float('inf')
+
+        for coin in coins:
+            diff = i - coin
+            if diff < 0:
+                break
+            minn = min(minn, dp[diff] + 1)
+
+        dp[i] = minn
+
+    if dp[amount] < float('inf'):
+        return dp[amount]
+    else:
+        return -1
+
 if __name__ == '__main__':
     coins = [1, 2, 5]
     amount = 11
+    assert coin_change_top_down(coins=coins, amount=amount) == 3
     assert coin_change(coins=coins, amount=amount) == 3
 
     coins = [2]
     amount = 3
+    assert coin_change_top_down(coins=coins, amount=amount) == -1
     assert coin_change(coins=coins, amount=amount) == -1
 
     coins = [1]
     amount = 0
+    assert coin_change_top_down(coins=coins, amount=amount) == 0
     assert coin_change(coins=coins, amount=amount) == 0
