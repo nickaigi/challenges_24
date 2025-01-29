@@ -51,3 +51,29 @@ class Solution:
                 if not result or parens[char] != result.pop():
                     return False
         return len(result) == 0
+
+if __name__ == '__main__':
+    solution = Solution()
+    # Example 1
+    print(solution.isValid("()"))  # Output: True
+
+    # Example 2
+    print(solution.isValid("()[]{}"))  # Output: True
+
+    # Example 3
+    print(solution.isValid("(]"))  # Output: False
+
+    # Example 4
+    print(solution.isValid("([])"))  # Output: True
+
+    # Test case with nested brackets
+    print(solution.isValid("({[]})"))  # Output: True
+
+    # Test case with unmatched opening bracket
+    print(solution.isValid("({[]}"))  # Output: False
+
+    # Test case with unmatched closing bracket
+    print(solution.isValid("({[]}))"))  # Output: False
+
+    # Test case with empty string
+    print(solution.isValid(""))  # Output: True
