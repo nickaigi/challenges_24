@@ -35,10 +35,21 @@ class Solution:
             return False
         if s1 == s2:
             return True
-        swaps = 0
-        for a, b in zip(s1, s2):
-            if a != b:
-                swaps += 1
-        if swaps == 0 or swaps == 2:
+        # Find the indices where the characters differ
+        diff_indices = []
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                diff_indices.append(i)
+        
+        # If there are exactly two mismatches, check if swapping makes the strings equal
+        if len(diff_indices) == 2:
+            i, j = diff_indices
+            if s1[i] == s2[j] and s1[j] == s2[i]:
+                return True
+        
+        # If there are no mismatches, return True
+        if len(diff_indices) == 0:
             return True
+        
+        # Otherwise, return False
         return False
