@@ -34,14 +34,12 @@ Then we apply the operation on s[1], and s becomes "".
 """
 class Solution:
     def clearDigits(self, s: str) -> str:
-        n = len(s)
-        result = []
-        for i in range(n):
-            if s[i].isnumeric():
-                if i == 0:
-                    continue
-                else:
-                    result.pop()
+        answer = []
+        for char in s:
+            if char.isdigit() and answer:
+                # if the answer list is not empty, remove the last character
+                answer.pop()
             else:
-                result.append(s[i])
-        return "".join(result)
+                # if the character is not a digit, add it to the answer list
+                answer.append(char)
+        return "".join(answer)
