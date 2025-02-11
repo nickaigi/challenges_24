@@ -30,7 +30,7 @@ Explanation: The following operations are done:
 Now s has no occurrences of "xy".
 """
 class Solution:
-    def removeOccurrences(self, s: str, part: str) -> str:
+    def removeOccurrences_nick(self, s: str, part: str) -> str:
         step = len(part)
         i = 0
         while part in s:
@@ -40,4 +40,16 @@ class Solution:
                 i = 0
             else:
                 i += 1
+        return s
+
+    def removeOccurrences(self, s: str, part: str) -> str:
+        # Continue removing occurrences of 'part' as long as it exists in 's'
+        while part in s:
+            # Find the index of the leftmost occurrence of 'part'
+            part_start_index = s.find(part)
+
+            # Remove the substring 'part' by concatenating segments before and after 'part'
+            s = s[:part_start_index] + s[part_start_index + len(part) :]
+
+        # Return the updated string after all occurrences are removed
         return s
