@@ -1,5 +1,6 @@
 # Binary Tree
 from typing import Optional, Self
+from collections import deque
 
 
 class TreeNode:
@@ -10,6 +11,65 @@ class TreeNode:
 
     def __str__(self) -> str:
         return str(self.val)
+
+
+def pre_order(node: Optional[TreeNode]):
+    """
+    Recursive Pre-Order Traversal (DFS) Time: O(n), Space: O(n)
+    """
+    if not node:
+        return
+    print(node)
+    pre_order(node.left)
+    pre_order(node.right)
+
+
+def in_order(node: Optional[TreeNode]):
+    """
+    Recursive In-Order Traversal (DFS) Time: O(n), Space: O(n)
+    """
+    if not node:
+        return
+    in_order(node.left)
+    print(node)
+    in_order(node.right)
+
+
+def post_order(node: Optional[TreeNode]):
+    """
+    Recursive Post-Order Traversal (DFS) Time: O(n), Space: O(n)
+    """
+    if not node:
+        return
+    post_order(node.left)
+    post_order(node.right)
+    print(node)
+
+
+def pre_order_iterative(node: TreeNode):
+    stk = [node]
+
+    while stk:
+        node = stk.pop()
+        if node.right: stk.append(node.right)
+        print(node)
+        if node.left: stk.append(node.left)
+
+
+def level_order(node: Optional[TreeNode]):
+    """
+    Level Order Traversal (BFS) Time: O(n), Space: O(n)
+    """
+    q = deque()
+    q.append(node)
+
+    while q:
+        node = q.popleft()
+        print(node)
+        if node.left:
+            q.append(node.left)
+        if node.right:
+            q.append(node.right)
 
 
 if __name__ == '__main__':
@@ -34,3 +94,11 @@ if __name__ == '__main__':
     c.left = f
 
     print(a)
+    print('\n================== Pre-Order ==================')
+    pre_order(a)
+    print('\n================== In-Order ===================')
+    in_order(a)
+    print('\n================== Post-Order =================')
+    post_order(a)
+    print('\n================== Pre-Order Iterative =================')
+    pre_order_iterative(a)
