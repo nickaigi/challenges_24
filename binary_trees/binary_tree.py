@@ -66,10 +66,18 @@ def level_order(node: Optional[TreeNode]):
     while q:
         node = q.popleft()
         print(node)
-        if node.left:
+        if node and node.left:
             q.append(node.left)
-        if node.right:
+        if node and node.right:
             q.append(node.right)
+
+
+def search(node: Optional[TreeNode], target: int) -> bool:
+    if not node:
+        return False
+    if node.val == target:
+        return True
+    return search(node.left, target) or search(node.right, target)
 
 
 if __name__ == '__main__':
@@ -100,5 +108,9 @@ if __name__ == '__main__':
     in_order(a)
     print('\n================== Post-Order =================')
     post_order(a)
-    print('\n================== Pre-Order Iterative =================')
+    print('\n================== Pre-Order Iterative =========')
     pre_order_iterative(a)
+    print('\n================== Level Order =================')
+    level_order(a)
+    print('\n================== Search for 10 in the tree using DFS ============')
+    print(f"search(node, 10) => {search(a, 10)}")
