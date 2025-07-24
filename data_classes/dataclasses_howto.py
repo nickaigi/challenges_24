@@ -3,7 +3,9 @@
 
 from dataclasses import dataclass, astuple, asdict
 
-
+# fronzen=True will make the class immutable, and add the __hash__ and __setattr__
+# order=True will add all the totalordering methods
+# __eq__, __lt__, __le__, __gt__, __ge__
 @dataclass(frozen=True, order=True)
 class Comment:
     id: int
@@ -76,6 +78,7 @@ def main():
     print(comment)
     print(astuple(comment))
     print(asdict(comment))
+    # to create a copy of comment
 
 
 if __name__ == '__main__':
