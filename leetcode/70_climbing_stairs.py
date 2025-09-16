@@ -26,26 +26,13 @@ Explanation: There are three ways to climb to the top.
 class Solution:
 
     def climbStairs(self, n: int) -> int:
-        if n == 1:
+        if n == 0 or n == 1:
             return 1
-        if n == 2:
-            return 2
-        a = [1, 2]
-        for i in range(2, n):
-            a.append(a[i - 2] + a[i - 1])
-        return a[-1]
 
-    def climbStairs_optimized(self, n: int) -> int:
-        if n == 1:
-            return 1
-        if n == 2:
-            return 2
+        dp = [0] * (n+1)
+        dp[0], dp[1] = 1, 1
 
-        two_back = 1
-        one_back = 2
+        for i in range(2, n+1):
+            dp[i] = dp[i - 1] + dp[i - 2]
 
-        for i in range(2, n):
-            curr = two_back + one_back
-            two_back = one_back
-            one_back = curr
-        return curr
+        return dp[n]
