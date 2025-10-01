@@ -6,10 +6,10 @@ class Solution:
         for n in num_set:
             if (n - 1) not in num_set:
                 # we are at a number that starts a sequence
-                len = 1
-                while (n + len) in num_set:
-                    len += 1
-                longest = max(len, longest)
+                length = 1
+                while (n + length) in num_set:
+                    length += 1
+                longest = max(length, longest)
         return longest
 
 
