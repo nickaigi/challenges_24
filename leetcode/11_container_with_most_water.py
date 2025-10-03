@@ -9,13 +9,14 @@ class Solution:
                 diff = abs(height[i] - height[j])
                 if diff > 0:
                     if height[i] > height[j]:
-                        h = height[i] - height[j]
+                        h = height[j]
                         area = max(area, (h * w))
                     else:
-                        h = height[j] - height[i]
+                        h = height[i]
                         area = max(area, (h * w))
+                else:
+                    area = max(area, (height[j] * w))
         return area
-
 
 if __name__ == '__main__':
     sol = Solution()
