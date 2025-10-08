@@ -1,12 +1,26 @@
 class Solution:
     def successfulPairs(self, spells: list[int], potions: list[int], success: int) -> list[int]:
+        """
+        O(nlogm + mlogm)
+        Sort potions and Binary search
+        """
+        potions.sort()
         res = []
-        for i in spells:
-            count = 0
-            for p in potions:
-                if i * p >= success:
-                    count += 1
-            res.append(count)
+
+        for s in spells:
+            # bin search
+            l, r = 0, len(potions) - 1
+            idx = len(potions) # find weakest potion that works
+
+            while l <= r:
+                mid = (l + r) // 2
+                if s * potions[mid] >= success:
+                    r = mid - 1
+                    idx = mid
+                else:
+                    l = mid + 1
+            res.append(len(potions) - idx)
+
         return res
 
 
