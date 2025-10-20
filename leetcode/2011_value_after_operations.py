@@ -1,12 +1,6 @@
 class Solution:
     def finalValueAfterOperations(self, operations: list[str]) -> int:
-        res = 0
-        for op in operations:
-            if op in {"++X", "X++"}:
-                res += 1
-            elif op in {"--X", "X--"}:
-                res -= 1
-        return res
+        return sum(1 if op[1] == '+' else -1 for op in operations)
 
 
 if __name__ == '__main__':
