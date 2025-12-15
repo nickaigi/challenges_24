@@ -3,17 +3,15 @@ from typing import List
 
 class Solution:
     def getDescentPeriods(self, prices: List[int]) -> int:
-        res = 0
         n = len(prices)
-        for i in range(n):
-            res += 1
-            j = i + 1
-            while j < n:
-                if prices[j - 1] - prices[j] == 1:
-                    res += 1
-                    j += 1
-                else:
-                    break
+        res = 1
+        prev = 1
+        for i in range(1, n):
+            if prices[i] == prices[i - 1] - 1:
+                prev += 1
+            else:
+                prev = 1
+            res += prev
         return res
 
 
