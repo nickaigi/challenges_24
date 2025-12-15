@@ -26,12 +26,17 @@ In python, all heaps are min heaps.
 
 
 if __name__ == '__main__':
+    # Build Min Heap (heapify)
+    # Time: O(n), Space: O(1)
+
     data = [10, 20, 43, 1, 2, 65, 17, 2, 3, 1]
     heapq.heapify(data)
     print(data)  # [1, 1, 17, 2, 2, 65, 43, 10, 3, 20]
-
     # the lowest value item (highest priority)
-    print(heapq.heappop(data))
-    heapq.heappush(data, -7)
-    print(data)  # [1, 1, 17, 2, 2, 65, 43, 10, 3, 20]
-    print(heapq.heappop(data))
+
+    # Heap Push (Insert element)
+    # Time: O(log n) time taken to re-order the tree
+    heapq.heappush(data, -7)  # [-7, 1, 17, 2, 1, 65, 43, 10, 3, 20, 2]
+
+    # Heap Pop(Extract min)
+    # Time: O(log n)
