@@ -25,7 +25,24 @@ In python, all heaps are min heaps.
 """
 
 
-if __name__ == '__main__':
+def heapsort(arr):
+    """
+    Heap Sort
+    Time: O(n log n), Space: O(n)
+    NOTE: O(1) Space is possible via swapping, but this is complex
+    """
+    heapq.heapify(arr)
+    n = len(arr)
+    new_list = [0] * n
+
+    for i in range(n):
+        minn = heapq.heappop(arr)
+        new_list[i] = minn
+
+    return new_list
+
+
+if __name__ == "__main__":
     # Build Min Heap (heapify)
     # Time: O(n), Space: O(1)
 
@@ -40,3 +57,22 @@ if __name__ == '__main__':
 
     # Heap Pop(Extract min)
     # Time: O(log n)
+    min_element = heapq.heappop(data)  # -7
+
+    # Heap Push Pop: Time O(log n)
+    heapq.heappushpop(data, 99)
+
+    # Peak at Min: Time O(1)
+    # Just get the heap[0]
+    print(data[0])
+
+    # Max Heap
+    data_max = [-4, 3, 1, 0, 2, 5, 10, 8, 12, 9]
+    n = len(data_max)
+    for i in range(n):
+        data_max[i] = -data_max[i]  # Multiply everything with -1
+
+    heapq.heapify(data_max)  # [-12, -9, -10, -8, -2, -5, -1, -3, 0, 4]
+    largest = -heapq.heappop(data_max)  # 12
+
+    heapq.heappush(data_max, -7)  # insert 7 into max heap
