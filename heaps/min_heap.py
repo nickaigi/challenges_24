@@ -76,3 +76,26 @@ if __name__ == "__main__":
     largest = -heapq.heappop(data_max)  # 12
 
     heapq.heappush(data_max, -7)  # insert 7 into max heap
+
+    # Building a heap from scratch - Time: O(n long n)
+    # Slower than heapq.heapify() which takes Time: O(n)
+    c = [-5, 4, 2, 1, 7, 0, 3]
+    heap_example = []
+    for x in c:
+        heapq.heappush(heap_example, x)
+        print(heap_example, len(heap_example))
+
+    # Putting tuples of items on the heap
+    # We shall use a frequency counter example
+    D = [5, 4, 3, 5, 4, 3, 5, 5, 4]
+    from collections import Counter
+
+    counter = Counter(D)  # Counter({5: 4, 4: 3, 3: 2})
+
+    heap = []  # heap to store our frequency counter
+
+    # we could add the items to a heap
+    for k, v in counter.items():
+        heapq.heappush(heap, (v, k))
+
+    print(heap)  # [(2, 3), (4, 5), (3, 4)]  Smallest freq shows up ontop
