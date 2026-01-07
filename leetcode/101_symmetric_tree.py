@@ -11,14 +11,20 @@ class TreeNode:
 
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        def sym(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-            if not root1 and not root2:
+        def is_mirror(
+            node_one: Optional[TreeNode], node_two: Optional[TreeNode]
+        ) -> bool:  # node_one: left, node_two: right
+            if not node_one and not node_two:  # both nodes are None
                 return True
 
-            if not root1 or not root2:
+            if not node_one or not node_two:  # one of the nodes is None
                 return False
-            if root1.val != root2.val:
-                return False
-            return sym(root1.left, root2.right) and sym(root1.right, root2.left)
 
-        return sym(root, root)
+            if node_one.val != node_two.val:
+                return False
+
+            return is_mirror(node_one.left, node_two.right) and is_mirror(
+                node_one.right, node_two.left
+            )
+
+        return is_mirror(root, root)
