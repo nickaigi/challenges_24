@@ -20,11 +20,10 @@ class Solution:
             if not node_one or not node_two:  # one of the nodes is None
                 return False
 
-            if node_one.val != node_two.val:
-                return False
-
-            return is_mirror(node_one.left, node_two.right) and is_mirror(
-                node_one.right, node_two.left
+            return (
+                node_one.val == node_two.val
+                and is_mirror(node_one.left, node_two.right)
+                and is_mirror(node_one.right, node_two.left)
             )
 
         return is_mirror(root, root)
