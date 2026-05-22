@@ -12,6 +12,12 @@ class Solution:
             arr[n - 1] = temp
         print(arr)
 
+    def rotateArr_two(self, arr: list[int], d: int) -> None:
+        n = len(arr)
+        temp = []
+        for i in arr[: n - d]:
+            temp.append(i)
+
 
 if __name__ == "__main__":
     sol = Solution()
