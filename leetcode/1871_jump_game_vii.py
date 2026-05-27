@@ -1,23 +1,34 @@
+from collections import deque
+
+
 class Solution:
     def canReach(self, s: str, minJump: int, maxJump: int) -> bool:
         n = len(s)
-        i, j = 0, 0
+        # if the last character isn't a '0', we can never reach it
+        if s[n - 1] != "0":
+            return False
 
-        while i < n:
-            j = i + minJump
-            print(f"{j=}, {i=}")
+        queue = deque([0])
+        far_reached = 0  # To avoid re-checking indices we've already looked at
 
-            if j < n and s[j] == "0":
-                i = j
-                continue
+        while queue:
+            curr = queue.popleft()
 
-            j = min((i + maxJump), (n - 1))
-            if j < n and s[j] == "0":
-                i = j
-            else:
-                return False
-            print(f"New i: {i}")
-        return True
+            # if we reached the end, we're done
+            if curr == n - 1:
+                return True
+
+            # The window of indices we can legally jump to
+            start = max(curr + minJump, far_reached + 1)
+            end = min(curr + maxJump, n - 1)
+
+            for j in range(start, end + 1):
+                if s[j] == "0":
+                    queue.append(j)
+            # ensure we don't scan the indices again from a future 'curr'
+            far_reached = max(far_reached, end)
+
+        return False
 
 
 if __name__ == "__main__":
@@ -32,5 +43,5 @@ if __name__ == "__main__":
     minJump = 3
     maxJump = 5
     sol.canReach(s, minJump, maxJump)
-    # assert not sol.canReach(s, minJump, maxJump)
-    # print("TESTS Passed")
+    assert not sol.canReach(s, minJump, maxJump)
+    print("TESTS Passed")
