@@ -37,6 +37,18 @@ def dfs_recursive(graph: dict[str, list[str]], node: str, visited=None) -> None:
             dfs_recursive(graph, neighbor, visited)
 
 
+def dfs_iterative(graph: dict[str, list[str]], node: str) -> None:
+    visited = set()  # Track visited nodes
+    stack = [node]  # stack for DFS
+
+    while stack:  # loop until stack is empty
+        node = stack.pop()
+        if node not in visited:
+            visited.add(node)  # Mark node as visited
+            print(f"Visiting node: {node}")  # print the current node
+            stack.extend(reversed(graph[node]))
+
+
 if __name__ == "__main__":
     # Define the decision tree as a dictionary
     graph = {
