@@ -1,10 +1,9 @@
 def sum_of_digits(num: int) -> int:
     total = 0
     while num != 0:
-        temp = divmod(num, 10)  # (num//10, num % 10)
-        digit = temp[1]
+        digit = num % 10  # grab the last digit
+        num = num // 10  # chop the last digit
         total += digit
-        num = temp[0]
     return total
 
 
