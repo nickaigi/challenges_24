@@ -2,7 +2,7 @@ class Solution:
     def minPairSum(self, nums: list[int]) -> int:
         nums.sort()
         max_sum = 0
-        for i in range(len(nums)):
+        for i in range(len(nums) // 2):  # we only need to go to the middle of the list
             max_sum = max(max_sum, nums[i] + nums[len(nums) - 1 - i])
         return max_sum
 
