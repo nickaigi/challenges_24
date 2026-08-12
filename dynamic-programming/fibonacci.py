@@ -17,19 +17,16 @@ def fib_memo(n: int) -> int:
 
 
 def fib(n: int) -> int:
-    r0, r1 = 0, 1
-    res = -1
+    a, b = 0, 1
 
-    for i in range(2, n + 1):
-        res = r0 + r1
-        r0, r1 = r1, res
-
-    return res
+    for i in range(n):
+        a, b = b, a + b
+    return a
 
 
 def main():
-    print(fib_memo(10))
-    print(fib(10))
+    print(fib_memo(100))
+    print(fib(100))
 
 
 if __name__ == "__main__":
