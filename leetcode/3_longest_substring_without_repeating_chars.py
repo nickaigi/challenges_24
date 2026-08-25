@@ -21,16 +21,17 @@ Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 """
 
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         res = 0
-        l = 0  # left pointer
+        left = 0
         char_set = set()
 
-        for r in range(len(s)):
-            while s[r] in char_set:
-                char_set.remove(s[l])
-                l += 1
-            char_set.add(s[r])
-            res = max(res, r - l + 1)
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+            char_set.add(s[right])
+            res = max(res, right - left + 1)
         return res
