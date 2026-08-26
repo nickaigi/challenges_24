@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -8,13 +5,17 @@ class ListNode:
 
 
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev = None
-        curr = head
+    def reverseList(self, head: ListNode | None) -> ListNode | None:
+        """
+        Time: O(n)
+        Space: O(1)
+        """
+        prev = None  # previous
+        curr = head  # current
 
         while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
+            temp = curr.next  # create a temp node to hold the next node
+            curr.next = prev  # reverse the pointer of current to point to prev
+            prev = curr  # convert the prev to be curr
+            curr = temp  # advance curr
         return prev
