@@ -4,34 +4,48 @@ class Solution:
         for i in range(9):
             seen = set()
             for j in range(9):
-                if board[i][j] != ".":
-                    if board[i][j] in seen:
-                        return False
-                    else:
-                        seen.add(board[i][j])
+                item = board[i][j]
+                if item in seen:
+                    return False
+
+                if item != ".":
+                    seen.add(item)
 
         # validate cols
         for i in range(9):
             seen = set()
             for j in range(9):
-                if board[j][i] != ".":
-                    if board[j][i] in seen:
-                        return False
-                    else:
-                        seen.add(board[j][i])
+                item = board[j][i]
+
+                if item in seen:
+                    return False
+
+                if item != ".":
+                    seen.add(board[j][i])
 
         # validate 3x3 box
         start_points = [
-            [0, 0],
-            [0, 3],
-            [0, 6],
-            [3, 0],
-            [3, 3],
-            [3, 6],
-            [6, 0],
-            [6, 3],
-            [6, 6],
+            (0, 0),
+            (0, 3),
+            (0, 6),
+            (3, 0),
+            (3, 3),
+            (3, 6),
+            (6, 0),
+            (6, 3),
+            (6, 6),
         ]
+        for i, j in start_points:
+            seen = set()
+            for row in range(i, i + 3):
+                for col in range(j, j + 3):
+                    item = board[row][col]
+                    if item in seen:
+                        return False
+                    if item != ".":
+                        seen.add(item)
+
+        # All checks passed
         return True
 
 
@@ -49,8 +63,7 @@ if __name__ == "__main__":
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
 
-    sol.isValidSudoku(board)
-    # assert sol.isValidSudoku(board)
+    assert sol.isValidSudoku(board)
     board = [
         ["8", "3", ".", ".", "7", ".", ".", ".", "."],
         ["6", ".", ".", "1", "9", "5", ".", ".", "."],
@@ -63,6 +76,5 @@ if __name__ == "__main__":
         [".", ".", ".", ".", "8", ".", ".", "7", "9"],
     ]
 
-    sol.isValidSudoku(board)
-
-    # assert not sol.isValidSudoku(board)
+    assert not sol.isValidSudoku(board)
+    print("All Tests Passed")
